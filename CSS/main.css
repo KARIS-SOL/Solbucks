@@ -1,11 +1,7 @@
 /*General 한 순서로 CSS 정리하기 */
 /* ICONS - 정해져있는 class를 쓴다*/
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+  font-variation-settings: 'FILL' 0, 'wght' 400,'GRAD' 0, 'opsz' 24;
 }
 
 /* COMMON */
@@ -18,12 +14,13 @@ body {
   height:  3000px; /*스크롤 만드려고 넣은거임 */
 }
 
+
 a { 
   text-decoration: none; /*a 태그여도 그냥 글자처럼 보이게 처리하는 법 */
 }
 
 img { 
-  display: block; /*이미지밑에 빈틈채우는것 inline 요소에서 display 요소로 바뀜 */
+  display: block; /*이미지밑에 빈틈채우기 위해서 inline 요소에서 display 요소로 바뀜 */
 }
 
 .inner { /*가로픽셀을 고정*/
@@ -49,10 +46,10 @@ img {
 
   .btn--light-green {
     position: absolute;
-
+    margin: auto;
     color: #076443;
     border-color: #076443;
-    transition    margin: auto;: 0.6s; /*부모한테 적용해야 바뀔때 돌아올떄 전부 적용됨 */
+    transition : 0.6s; /*부모한테 적용해야 바뀔때 돌아올떄 전부 적용됨 */
   }
 
   .btn--light-green:hover {
@@ -60,7 +57,51 @@ img {
     border-color: black;
     color: white;
     text-decoration: underline;
+  }
 
+  .btn--brown {
+    color: #633510;
+    border-color: #633510;
+    transition: 0.6s;
+  }
+
+  .btn--brown:hover {
+    background-color: #633510;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .btn--gold {
+    border-color: #966932;
+    color: #966932;
+    transition: 0.6s;
+  }
+  .btn--gold:hover {
+    background-color: #966932;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .btn--white {
+    border-color: white;
+    color: white;
+    transition: 0.6s;
+  }
+  .btn--white:hover {
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+  }
+
+  .btn--black {
+    border-color: black;
+    color: black;
+    transition: 0.6s;
+  }
+  .btn--black:hover {
+    background-color: black;
+    color: white;
+    text-decoration: underline;
   }
 
 /*HEADER*/
@@ -94,6 +135,7 @@ header .inner .logo {
 /* Sub menu */
 header .inner .sub-menu {
   display: flex;
+  align-items: center;
   position: absolute;
   top: 6px;
   right: 50px;
@@ -163,7 +205,6 @@ header .inner .sub-menu .search > .material-symbols-outlined {
   height: 24px;
   right: 3px;
   margin: auto;
-  /* font-variation-settings: "fill" 0, "wght" 700, "GRAD" 0, "opsz" 48; */
 }
 
 /* MAIN MENU */
@@ -191,11 +232,11 @@ header .inner .main_menu .item:hover .item__name { /*아이템에 hover 를 주�
 
 header .inner .main_menu .item .item__contents {
   position: fixed; /*뷰포트를 기준으로 하려고 */
-  width: 100%;
-  /*height: 50px; */
-  left: 0; /*뷰포트를 기준으로 왼쪽에 붙히겠다*/
-  top: 120px;
+  width: 100%;  /*height: 50px; */
+  left: 0; /*뷰포트를 기준으로 왼쪽'0'에 붙히겠다*/
+  top: 120px; /*header 아래 위치할수 있게 */
   display: none; /*특성과 기준 전부다 사라짐 다없앤다음에 봐야 편해서*/
+ 
 }
 
 header .inner .main_menu .item:hover .item__contents { /*아이템에 호버를 주면 상태창이 유지가 된다 */
@@ -242,8 +283,8 @@ header .inner .main_menu .item .item__contents .item__contents__menu .inner > li
 
 /* BADGES */
 header .badges {
-  position: absolute; /*fixed 안쓰고 뷰포트 해보기 */
-  top: 150px;
+  position: absolute; /*fixed 안쓰고 뷰포트 해보기 with each class */
+  top: 150px; /*header 120px 을 줬기 떄문에 거기서 30px 떨어뜨려서 */
   /* left: calc(1100px + (100vw - 1100px) / 2); - 이너옆에 고정된 느낌으로 고정위치가 오른쪽이 아닌 왼쪽에 붙을 수 있게 효과주는것 */
   right: 10px;
 }
@@ -264,7 +305,7 @@ header .badges .badge img {
 
 /* VISUAL */
 .visual {
-  position: relative;
+  position: relative; /*inner 라는 공간안에 쓰려고 relative 사용함 */
   margin-top: 120px;
   background-image: url("../images/visual_bg.jpg");
   background-position: center;
@@ -378,7 +419,8 @@ header .badges .badge img {
 }
 .notice .notice-line .inner .inner__left a span {
   font-size: 36px;
-  vertical-align: bottom; /*글자들을 기준(base line A와 g의 차이)으로 중앙에서 맞춰짐 */
+  vertical-align: bottom; /*글자들을(아래부분이 기준)기준(base line A와 g의 차이)으로 중앙에서 맞춰짐 
+  혹은 display를 block 으로 처리해주면됨 */
 } 
 .notice .notice-line .inner .inner__right {
   position: relative;
@@ -430,7 +472,7 @@ header .badges .badge img {
 .rewards .inner .rewards__items .rewards__items__register{
   position: relative; /*버튼의부모임 */
   padding-bottom: 12px;
-  box-shadow: 0 0.5px #c8c8c8;
+  box-shadow: 0 0.5px #c8c8c8; /*border로 넣으면 너무 진해져서 */
 }
 .rewards .inner .rewards__items .rewards__items__register p {
   display: block;
@@ -480,6 +522,294 @@ header .badges .badge img {
   right: 0;
   bottom: 0;
 }
-.rewards .inner .rewards__items .rewards__items__card .buttons .btn--login {}
 
+/* ELSALVADOR */
+.elsalvador {
+  position: relative;
+  height: 570px; /*넓이는 뷰포트에서 받아올것 */
+  background-image: url('../images/elsalvador_bg.jpg');
+  background-size: cover; 
+  background-position: center; /*105%를 주면 이미지가 늘어나니깐 가운데로 사진 중요 */
+  overflow: hidden; /*105% 니깐 밖으로 빠지는 부분을 안보이게함 */
+
+}
+.elsalvador .inner {
+  position: relative;
+  
+}
+.elsalvador .inner img.elsalvador__item {
+  position: absolute; /*inner 라는 기준으로 움직일거임 */
+  width: 310px;
+  top: 70px;
+  left: 110px;
+  transform: translateX(-700px);
+  opacity: 0;
+  transition: 2.5s;
+}
+
+.elsalvador .inner .elsalvador__contents { /*공간*/
+  position: absolute; /*맘대로 움직이게해야지 */
+  width: 339px;
+  top: 180px;
+  right: 140px;
+  transform: translateX(900px);
+  opacity: 0;
+  transition: 2.5s;
+}
+
+.elsalvador:active .inner img.elsalvador__item,
+.elsalvador:active .inner .elsalvador__contents { 
+  opacity: 1;
+  transform: translateX(0); /*원래 있어야할 곳으로 돌려놓는것 */
+
+}
+
+.elsalvador .inner .elsalvador__contents .item-text {}
+.elsalvador .inner .elsalvador__contents .btn.btn--brown {
+  margin-top: 40px;
+}
+
+/* EHIOPIA */
+.ethiopia {
+  position:relative;
+  height: 400px;
+  background-image: url("../images/ethiopia_bg.png");
+  overflow: hidden;
+}
+.ethiopia::before {
+  content: ""; /*자동으로 inline 속성이라 display 가 block 속성을 갖게됨 */
+  position: absolute;
+  bottom: 0;
+  left: -50px;
+  width: 425px;
+  height: 404px;
+  background-image: url("../images/ethiopia_before.png");
+  background-size: cover; /*repeat 을 어느정도 피할수 있긴함 */
+  background-repeat: no-repeat;
+  opacity: 0;
+  
+}
+.ethiopia::after {
+  content: ""; /*자동으로 inline 속성이라 display 가 block 속성을 갖게됨 */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 361px;
+  height: 404px;
+  background-image: url("../images/ethiopia_after.png");
+  background-size: cover; /*repeat 을 어느정도 피할수 있긴함 */
+  background-repeat: no-repeat;
+  opacity: 0;
+  }
+.ethiopia .inner {
+ 
+}
+.ethiopia:active::before,
+.ethiopia:active::after {
+  transition: 1.5s;
+  opacity: 1;
+}
+
+ .ethiopia .inner .ethiopia__contents {
+  position:absolute;
+  width: 496px;
+  left: 0;
+  top: 120px;
+}
+.ethiopia .inner .ethiopia__item {
+  position: absolute;
+  left: -500px;
+  opacity: 0;
+}
+
+.ethiopia:active .inner .ethiopia__item {
+ transition: 1.5s;
+ transition-delay: 0.8s;
+ opacity: 1;
+}
+
+.ethiopia .inner .btn.btn--gold {
+  position: absolute;
+  left: 260px;
+  top: 270px;
+}
+
+
+.favourite {
+  position: relative;
+  height: 800px;
+  background-image: url("../images/fav_bg.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.favourite .inner {
+  position: relative;
+}
+.favourite .inner .favourite__text-1 {
+  position: absolute;
+  width: 258px;
+  top: 120px;
+  left: 108px;
+  transform: translateX(-700px);
+  opacity: 0;
+  transition: 2s;
+}
+.favourite .inner .favourite__text-2 {
+  position: absolute;
+  width: 362px;
+  top: 370px;
+  transform: translateX(-700px);
+  opacity: 0;
+  transition: 2.5s;
+}
+.favourite:active .inner .favourite__text-1,
+.favourite:active .inner .favourite__text-2 {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.favourite .inner .favourite__image {
+  position: absolute;
+  width: 912px;
+  top: 100px;
+  right: -260px;
+}
+.favourite .inner .btn.btn--white {
+  position: absolute;
+  top: 580px;
+  left: 238px; 
+}
+
+/*MAGAZINE*/
+.magazine {
+  position: relative;
+  height: 400px;
+  background-image: url("../images/magazine_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 50px;
+  overflow: hidden;
+  
+}
+.magazine .inner {
+  position: relative;
+}
+
+.magazine .inner .magazine__text {
+  position: absolute;
+  width: 588px;
+  top: 135px;
+  left: 60px;
+}
+
+.magazine .inner .magazine__image {
+  position: absolute;
+  width: 348;
+  top: 0px;
+  right: 50px;
+  opacity: 0;
+  transition: 1.5s;
+}
+
+.magazine:active .inner .magazine__image {
+  opacity: 1;
+}
+
+
+.magazine .inner .btn.btn--black {
+  position: absolute;
+  top: 270px;
+  left: 295px;
+}
+
+/*STORE*/
+.store {
+  position: relative;
+  height: 400px;
+  background-image: url("../images/store_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.store .inner {
+  height: 400px; /*그래야 바로 밑에 딱 붙어있을 수 있음 */
+}
+.store .inner .store__text-1 {
+  position: absolute;
+  width: 385px;
+  top: 100px;
+  right: 50px;
+  transform: translateX(800px); 
+  transition: 2s;
+  opacity: 0;
+}
+.store .inner .store__text-2 {
+  position: absolute;
+  width: 366px;
+  top: 170px;
+  right: 69px;
+  transform: translateX(800px); 
+  transition: 2.5s;
+  opacity: 0;
+}
+.store .inner .store__img-1 {
+  position: absolute;
+  width: 366px;
+  top: 0;
+  left: 70px;
+  opacity: 0;
+  transition: 1.5w;
+}
+.store .inner .store__img-2 {
+  position: absolute;
+  width: 228px;
+  top: 150px;
+  left: 300px;
+  opacity: 0;
+  transition: 1.5w;
+}
+.store .inner .store__img-3 {
+  position: absolute;
+  width: 348px;
+  top: -60px; /*overflow hidden 을 줬기때문에 문제 없음*/
+  left: 430px;
+  opacity: 0;
+  transition: 1.5w;
+}
+.store .inner .store__img-4 {
+  position: absolute;
+  width: 230px;
+  right: -70px;
+  bottom: 0px;
+  opacity: 0;
+  transition: 1.5w;
+}
+.store .inner .btn.btn--black {
+  position: absolute;
+  top: 290px;
+  right: 330px;
+  transform: translate(800px);
+  transition: 3s;
+
+}
+.store:active .inner .store__img-1,
+.store:active .inner .store__img-2,
+.store:active .inner .store__img-3,
+.store:active .inner .store__img-4 {
+  opacity: 1;
+}
+
+.store .inner .store__text-1,
+.store .inner .store__text-2 
+
+
+
+
+.store .inner .btn.btn--black {
+
+}
+.
 
