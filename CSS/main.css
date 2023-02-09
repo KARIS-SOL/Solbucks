@@ -11,7 +11,7 @@ body {
   font-weight: 400;
   line-height: 1.4;
   font-family: 'Nanum Gothic', sans-serif;
-  height:  3000px; /*스크롤 만드려고 넣은거임 */
+  /*height: 5000px; 스크롤 만드려고 넣은거임 */
 }
 
 
@@ -43,7 +43,6 @@ img {
     border-radius: 5px;
     font-size: 15px;
   }
-
   .btn--light-green {
     position: absolute;
     margin: auto;
@@ -734,34 +733,51 @@ header .badges .badge img {
   background-repeat: no-repeat;
   overflow: hidden;
 }
+
 .store .inner {
-  height: 400px; /*그래야 바로 밑에 딱 붙어있을 수 있음 */
+  height: 400px;
 }
+
 .store .inner .store__text-1 {
   position: absolute;
   width: 385px;
   top: 100px;
   right: 50px;
-  transform: translateX(800px); 
-  transition: 2s;
   opacity: 0;
+  transform: translateX(800px);
+  transition: 2s;
 }
+
 .store .inner .store__text-2 {
   position: absolute;
   width: 366px;
   top: 170px;
   right: 69px;
-  transform: translateX(800px); 
-  transition: 2.5s;
   opacity: 0;
+  transform: translateX(800px);
+  transition: 2.5s;
 }
+
+.store:active .inner .store__text-1,
+.store:active .inner .store__text-2 {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.store:active .inner .btn.btn--black {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 3s, background-color 0.6s, color 0.6s,
+    text-decoration 0.6s;
+}
+
 .store .inner .store__img-1 {
   position: absolute;
   width: 366px;
   top: 0;
   left: 70px;
   opacity: 0;
-  transition: 1.5w;
+  transition: 1.5s;
 }
 .store .inner .store__img-2 {
   position: absolute;
@@ -769,32 +785,32 @@ header .badges .badge img {
   top: 150px;
   left: 300px;
   opacity: 0;
-  transition: 1.5w;
+  transition: 1.5s;
 }
 .store .inner .store__img-3 {
   position: absolute;
   width: 348px;
-  top: -60px; /*overflow hidden 을 줬기때문에 문제 없음*/
+  top: -60px;
   left: 430px;
   opacity: 0;
-  transition: 1.5w;
+  transition: 1.5s;
 }
 .store .inner .store__img-4 {
   position: absolute;
   width: 230px;
   right: -70px;
-  bottom: 0px;
+  bottom: 0;
   opacity: 0;
-  transition: 1.5w;
+  transition: 1.5s;
 }
 .store .inner .btn.btn--black {
   position: absolute;
   top: 290px;
   right: 330px;
-  transform: translate(800px);
-  transition: 3s;
-
+  opacity: 0;
+  transform: translateX(800px);
 }
+
 .store:active .inner .store__img-1,
 .store:active .inner .store__img-2,
 .store:active .inner .store__img-3,
@@ -802,14 +818,113 @@ header .badges .badge img {
   opacity: 1;
 }
 
-.store .inner .store__text-1,
-.store .inner .store__text-2 
 
+/*FOOTER*/
+  footer {
+    position: relative; /*높이값 생략, 컨텐츠높이만큼 가져가는 게 자연스러움 */
+    background-color: #2c2a29;
+    padding: 30px 0;
+  }
+  footer .inner {
+    
+  }
 
+/*FOOTER MENU*/
+footer .inner .footer__menu {
+  display: flex;
+}
+footer .inner .footer__menu .left {
+  width: 90%;
+}
+footer .inner .footer__menu .left .menu {
+  display: flex;
+   
+}
+footer .inner .footer__menu .left .menu > li {/*li가 중첩되니깐 직계자손으로 사용*/
+  width: 20%;
+} 
+footer .inner .footer__menu .left .menu > li > ul {}  
+footer .inner .footer__menu .left .menu > li > ul > a {
+  display: block;
+  color: white;
+  font-size: 14px;
+  margin: 10px 0;  
+}  
+footer .inner .footer__menu .left .menu > li > ul > li {
+  font-size: 12px;
+  color: white;
+  margin: 8px 0;
+  cursor: pointer;
+}  
 
+footer .inner .footer__menu .left .menu > li > ul > a:hover,
+footer .inner .footer__menu .left .menu > li > ul > a > li:hover {
+ text-decoration: underline;
+}
 
-.store .inner .btn.btn--black {
+footer .inner .footer__menu .right {
+  width: 10%;
+  
+}
+footer .inner .footer__menu .right .img {
+ float: right;
+}
+
+/*FOOTER SUB__MENU */
+footer .inner .footer__sub-menu {
+  padding: 30px 50px 10px 50px;
 
 }
-.
+footer .inner .footer__sub-menu > ul {
+  display: flex;
+  justify-content: space-between;
+  /*양끝에 붙게 처리됨 */
+  
+}
+footer .inner .footer__sub-menu > ul > li {
+  font-size: 12px;
+  color: #ccc;
+}
+
+footer .inner .footer__sub-menu > ul > li.contour {/*애가 ul>li 선택자 이김 */
+  color: #999;
+  
+}  
+footer .inner .footer__sub-menu > ul > li > a {
+  color: #ccc;
+}
+ 
+footer .inner .footer__sub-menu > ul > li:first-child > a {
+    color: #00b050; 
+}
+
+footer .inner .footer__sub-menu > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+/*footer button */
+footer .inner .footer__btn {
+  text-align: center;
+}
+footer .inner .footer__btn .btn {
+  margin-right: 5px; /*inline block 이기 때문에 가능한것 common 에있음 */
+  font-size: 12px;
+}
+
+footer .inner .footer__btn .btn:hover {
+  background-color: transparent;
+  text-decoration: underline;
+  color: white;
+}
+
+/*footer copylight*/
+footer .inner .footer__copylight {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 30px;
+ }
+ footer .inner .footer__copylight p {
+  line-height: 30px;
+ }
 
