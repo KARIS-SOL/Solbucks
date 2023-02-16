@@ -123,10 +123,10 @@ header .inner .logo {
   margin: auto; /*해당영역의 가로사이즈가 설정되어있어야 잘먹힘 */
   top: 0;
   bottom: 0;
-  /* left: 0; - 왼쪽벽에 붙어있게 할수 있음 
-  right: 0; */
+  left: 0; /* - 왼쪽벽에 붙어있게 할수 있음 */
+  right: 0;
   height: 75px;
-  width: 75px;
+  
   /*top: 50%; / transform: translateY(-50%) ; */
   /*bottom: 0;*/
 }
@@ -285,11 +285,12 @@ header .badges {
   position: absolute; /*fixed 안쓰고 뷰포트 해보기 with each class */
   top: 150px; /*header 120px 을 줬기 떄문에 거기서 30px 떨어뜨려서 */
   /* left: calc(1100px + (100vw - 1100px) / 2); - 이너옆에 고정된 느낌으로 고정위치가 오른쪽이 아닌 왼쪽에 붙을 수 있게 효과주는것 */
-  right: 10px;
+  left: calc(1100px + (100vw - 1100px) / 2);
 }
 
 header .badges .badge {
   cursor: pointer;
+  margin-top: 10px;
 }
 
 header .badges .badge img {
@@ -297,20 +298,20 @@ header .badges .badge img {
 }
 
 @media screen and (max-width: 1400px) {
-  header. .badges {
+  header .badges {
     left: calc(100vw - 150px);
   }
 }
 
 /* VISUAL */
 .visual {
-  position: relative; /*inner 라는 공간안에 쓰려고 relative 사용함 */
+  position: relative;
   margin-top: 120px;
   background-image: url("../images/visual_bg.jpg");
   background-position: center;
+  /* 스크롤 비율 낮춰도 양쪽 배경 꽉차게 */
   background-size: 106% 100%;
   background-repeat: no-repeat;
-  
 }
 
 .visual .inner {
@@ -321,12 +322,19 @@ header .badges .badge img {
 .visual .inner .slogan {
   display: flex;
   flex-wrap: wrap;
+  /* .inner 기준으로 absolute */
   position: absolute;
   width: 340px;
   justify-content: center;
   top: 180px;
-  left: -60px;
+  left: -130px;
+  opacity: 0;  /* 애니메이션 준비*/
 }
+.visual.animate .inner .slogan {  /* 애니메이션 시작 */
+  opacity: 1;
+  transition: 0.4s;
+}
+
 
 .visual .inner .slogan img {
   width: 340px;
@@ -346,19 +354,40 @@ header .badges .badge img {
   width: 290px;
   top: 120px;
   left: 340px;
+  opacity: 0;/* 애니메이션 준비*/
+}
+.visual.animate .inner .item-1 {
+  transition: 0.4s;
+  opacity: 1;
+  transition-delay: 0.4s;
 }
 
 .visual .inner .item-2 {
   width: 310px;
   top: 208px;
   left: 538px;
+  opacity: 0;/* 애니메이션 준비*/
 }
+.visual.animate .inner .item-2 {
+  transition: 0.4s;
+  opacity: 1;
+  transition-delay: 0.8s;
+}
+
 
 .visual .inner .item-3 {
   width: 310px;
   top: 162px;
   left: 762px;
+  opacity: 0;/* 애니메이션 준비*/
 }
+.visual.animate .inner .item-3 {
+  transition: 0.4s;
+  opacity: 1;
+  transition-delay: 1.2s;
+}
+
+
 
 /* NOTICE */
 .notice {
@@ -406,16 +435,23 @@ header .badges .badge img {
   font-size: 16px;
 
 }
-.notice .notice-line .inner .inner__left div {
+.notice .notice-line .inner .inner__left .swiper {  /*swiper 를 쓰려면 크기값이 정확해야해서 height 설정 */
   position: absolute;
+  height: 62px;
   left: 80px;
   font-size: 14px;
 }
+.notice .notice-line .inner .inner__left .swiper-wrapper .swiper-slide { 
+  height: 62px;
+  line-height: 62px;
+
+}
+
 .notice .notice-line .inner .inner__left a {
   position: absolute;
   right: 20px;
   color: white;
-}
+} 
 .notice .notice-line .inner .inner__left a span {
   font-size: 36px;
   vertical-align: bottom; /*글자들을(아래부분이 기준)기준(base line A와 g의 차이)으로 중앙에서 맞춰짐 
@@ -437,13 +473,106 @@ header .badges .badge img {
 .notice .notice-line .inner .inner__right a {
   position: absolute;
   right: 20px;
-  color:black
-
+  color:black;
+  transition: 0.4s;
 }
+
+.notice .notice-line .inner .inner__right a.show {
+  transform: rotate(180deg);
+}
+
+
 .notice .notice-line .inner .inner__right a span {
   font-size: 36px;
   display: block;
 }
+
+
+
+/*PROMOTION*/
+.notice .promotion {
+  position: relative;
+  height: 658px;
+  background-color: #f6f5ef;
+  overflow: hidden; /*뷰포트이상으로 보이는 부분을 없애서 가로스크롤 없앰 */
+  transition: height 0.4s;
+}
+.notice .promotion.hide {
+  height: 0px;
+}
+.notice .promotion .swiper {
+  position: absolute;
+  width: calc(819px * 3 + 20px);
+  height: 553px;
+  /* background-color: orange; */
+  text-align: center;
+  left: 50%;  /*부모요소로부터의 50% -중앙정렬하려구 */
+  transform: translateX(-50%); /* 자기자신의 50% 중앙정렬하려구*/
+  top: 40px;
+}
+.notice .promotion .swiper .swiper-wrapper {}
+.notice .promotion .swiper .swiper-wrapper .swiper-slide {
+  opacity: 0.5;
+  transition: 0.2s;
+
+}
+.notice .promotion .swiper .swiper-wrapper .swiper-slide-active {
+  opacity: 1;
+}
+.notice .promotion .swiper .swiper-wrapper .swiper-slide .btn {
+  position: absolute;
+  width: 150px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+  /* top 0 주고 heigth 36px 정도 주면 완전 사진 가운데에 위치가능 (중앙) */
+
+  /* .notice .promotion .swiper .swiper-pagination {
+    width: 100px;
+    height: 50px;
+  } */
+ 
+.notice .promotion .swiper-button-prev,
+.notice .promotion .swiper-button-next {
+  position: absolute;
+  top: 250px;
+  width: 55px;
+  height: 55px;
+  border: 2px solid #333;
+  color: #333;  /*양옆에 화살표는 text 로 들어가서 그냥 색변경가능 */
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1; /*이미지보다 상단에 있어야하므로 */
+}
+
+.notice .promotion .swiper-button-prev:after,
+.notice .promotion .swiper-button-next:after {
+  font-size: 24px; /*span태그라서 font로 사이즈 조정 가능 */
+}
+.notice .promotion .swiper-button-prev {
+  left: 50%;
+  transform: translateX(-550px);
+}
+.notice .promotion .swiper-button-next {
+  right: 50%;
+  transform: translateX(550px); 
+}
+
+.notice .promotion .swiper-pagination {}
+.notice .promotion .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+
+}
+.notice .promotion .swiper-pagination-bullet-active {
+  background-image: url("../images/promotion_on.png");
+  background-size: cover;
+  background-color: transparent;
+}
+
+
 
 /* REWARDS */
 .rewards {
@@ -556,8 +685,8 @@ header .badges .badge img {
   transition: 2.5s;
 }
 
-.elsalvador:active .inner img.elsalvador__item,
-.elsalvador:active .inner .elsalvador__contents { 
+.elsalvador.animate .inner img.elsalvador__item,
+.elsalvador.animate .inner .elsalvador__contents { 
   opacity: 1;
   transform: translateX(0); /*원래 있어야할 곳으로 돌려놓는것 */
 
@@ -603,8 +732,8 @@ header .badges .badge img {
 .ethiopia .inner {
  
 }
-.ethiopia:active::before,
-.ethiopia:active::after {
+.ethiopia.animate::before,
+.ethiopia.animate::after {
   transition: 1.5s;
   opacity: 1;
 }
@@ -621,7 +750,7 @@ header .badges .badge img {
   opacity: 0;
 }
 
-.ethiopia:active .inner .ethiopia__item {
+.ethiopia.animate .inner .ethiopia__item {
  transition: 1.5s;
  transition-delay: 0.8s;
  opacity: 1;
@@ -629,7 +758,7 @@ header .badges .badge img {
 
 .ethiopia .inner .btn.btn--gold {
   position: absolute;
-  left: 260px;
+  left: 260px; 
   top: 270px;
 }
 
@@ -663,8 +792,8 @@ header .badges .badge img {
   opacity: 0;
   transition: 2.5s;
 }
-.favourite:active .inner .favourite__text-1,
-.favourite:active .inner .favourite__text-2 {
+.favourite.animate .inner .favourite__text-1,
+.favourite.animate .inner .favourite__text-2 {
   transform: translate(0);
   opacity: 1;
 }
@@ -712,7 +841,7 @@ header .badges .badge img {
   transition: 1.5s;
 }
 
-.magazine:active .inner .magazine__image {
+.magazine.animate .inner .magazine__image {
   opacity: 1;
 }
 
@@ -758,8 +887,8 @@ header .badges .badge img {
   transition: 2.5s;
 }
 
-.store:active .inner .store__text-1,
-.store:active .inner .store__text-2 {
+.store.animate .inner .store__text-1,
+.store.animate .inner .store__text-2 {
   opacity: 1;
   transform: translateX(0);
 }
@@ -811,10 +940,10 @@ header .badges .badge img {
   transform: translateX(800px);
 }
 
-.store:active .inner .store__img-1,
-.store:active .inner .store__img-2,
-.store:active .inner .store__img-3,
-.store:active .inner .store__img-4 {
+.store.animate .inner .store__img-1,
+.store.animate .inner .store__img-2,
+.store.animate .inner .store__img-3,
+.store.animate .inner .store__img-4 {
   opacity: 1;
 }
 
